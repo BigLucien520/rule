@@ -1,0 +1,7 @@
+# TubiTV 分流列表
+DOMAIN-SUFFIX,tubi.tv
+DOMAIN-SUFFIX,tubitv.com
+DOMAIN-SUFFIX,tubi.video
+DOMAIN-SUFFIX,adrise.tv
+DOMAIN-SUFFIX,adrise.io
+DOMAIN,tubitv.map.fastly.net
