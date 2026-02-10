@@ -7,7 +7,7 @@
 proxy-providers:
 
   飞猪云:
-    url: "     "
+    url: "  "
     type: http
     health-check:
       enable: true
@@ -17,7 +17,7 @@ proxy-providers:
     filter: '^(?!.*(剩余|流量|到期|套餐|官网|最新网址|距离|重置|使用|单数)).*$'
     
   多宝:
-    url: "   "
+    url: " "
     type: http
     health-check:
       enable: true
@@ -146,8 +146,31 @@ default: &default
     - 韩国-故转
     - 美国-智选
     - 美国-故转
+    - 加拿大-智选
+    - 加拿大-故转
+    - 墨西哥-故转
     - 英国-智选
     - 英国-故转
+    - 德国-智选
+    - 德国-故转
+    - 法国-智选
+    - 法国-故转
+    - 荷兰-智选
+    - 荷兰-故转
+    - 俄罗斯-智选
+    - 俄罗斯-故转
+    - 意大利-故转
+    - 西班牙-故转
+    - 澳大利亚-智选
+    - 澳大利亚-故转
+    - 印度-故转
+    - 泰国-故转
+    - 越南-故转
+    - 菲律宾-故转
+    - 马来西亚-故转
+    - 巴西-故转
+    - 阿根廷-故转
+    - 土耳其-故转
     - 其他-故转
     - 拒绝
 
@@ -416,6 +439,395 @@ proxy-groups:
     filter: "(?=.*(英国|英|伦敦|UK|United Kingdom|🇬🇧|London)).*$"
 
 
+  # 加拿大组
+
+  - name: 加拿大-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 加拿大-手选
+      - 加拿大-智选
+  - name: 加拿大-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(加拿大|CA|Canada|温哥华|多伦多|蒙特利尔|🇨🇦)).*$"
+  - name: 加拿大-智选
+    type: smart
+    include-all: true
+    policy-priority: ".*多宝.*:0.8"
+    uselightgbm: true
+    collectdata: true
+    health-check: 
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 60
+      tolerance: 2
+    strategy: sticky-sessions
+    interval: 180
+    filter: "(?=.*(加拿大|CA|Canada|温哥华|多伦多|蒙特利尔|🇨🇦)).*$"
+
+  # 墨西哥组
+
+  - name: 墨西哥-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 墨西哥-手选
+      - 墨西哥-自动
+  - name: 墨西哥-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(墨西哥|MX|Mexico|🇲🇽)).*$"
+  - name: 墨西哥-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(墨西哥|MX|Mexico|🇲🇽)).*$"
+
+  # 德国组
+
+  - name: 德国-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 德国-手选
+      - 德国-智选
+  - name: 德国-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(德国|德|DE|Germany|柏林|法兰克福|🇩🇪)).*$"
+  - name: 德国-智选
+    type: smart
+    include-all: true
+    policy-priority: ".*多宝.*:0.8"
+    uselightgbm: true
+    collectdata: true
+    health-check: 
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 60
+      tolerance: 2
+    strategy: sticky-sessions
+    interval: 180
+    filter: "(?=.*(德国|德|DE|Germany|柏林|法兰克福|🇩🇪)).*$"
+
+  # 法国组
+
+  - name: 法国-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 法国-手选
+      - 法国-智选
+  - name: 法国-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(法国|法|FR|France|巴黎|🇫🇷)).*$"
+  - name: 法国-智选
+    type: smart
+    include-all: true
+    policy-priority: ".*多宝.*:0.8"
+    uselightgbm: true
+    collectdata: true
+    health-check: 
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 60
+      tolerance: 2
+    strategy: sticky-sessions
+    interval: 180
+    filter: "(?=.*(法国|法|FR|France|巴黎|🇫🇷)).*$"
+
+  # 荷兰组
+
+  - name: 荷兰-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 荷兰-手选
+      - 荷兰-智选
+  - name: 荷兰-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(荷兰|NL|Netherlands|阿姆斯特丹|🇳🇱)).*$"
+  - name: 荷兰-智选
+    type: smart
+    include-all: true
+    policy-priority: ".*多宝.*:0.8"
+    uselightgbm: true
+    collectdata: true
+    health-check: 
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 60
+      tolerance: 2
+    strategy: sticky-sessions
+    interval: 180
+    filter: "(?=.*(荷兰|NL|Netherlands|阿姆斯特丹|🇳🇱)).*$"
+
+  # 俄罗斯组
+
+  - name: 俄罗斯-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 俄罗斯-手选
+      - 俄罗斯-智选
+  - name: 俄罗斯-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(俄罗斯|俄|RU|Russia|莫斯科|🇷🇺)).*$"
+  - name: 俄罗斯-智选
+    type: smart
+    include-all: true
+    policy-priority: ".*多宝.*:0.8"
+    uselightgbm: true
+    collectdata: true
+    health-check: 
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 60
+      tolerance: 2
+    strategy: sticky-sessions
+    interval: 180
+    filter: "(?=.*(俄罗斯|俄|RU|Russia|莫斯科|🇷🇺)).*$"
+
+  # 意大利组
+
+  - name: 意大利-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 意大利-手选
+      - 意大利-自动
+  - name: 意大利-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(意大利|意|IT|Italy|米兰|罗马|🇮🇹)).*$"
+  - name: 意大利-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(意大利|意|IT|Italy|米兰|罗马|🇮🇹)).*$"
+
+  # 西班牙组
+
+  - name: 西班牙-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 西班牙-手选
+      - 西班牙-自动
+  - name: 西班牙-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(西班牙|ES|Spain|马德里|巴塞罗那|🇪🇸)).*$"
+  - name: 西班牙-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(西班牙|ES|Spain|马德里|巴塞罗那|🇪🇸)).*$"
+
+  # 澳大利亚组
+
+  - name: 澳大利亚-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 澳大利亚-手选
+      - 澳大利亚-智选
+  - name: 澳大利亚-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(澳大利亚|澳|AU|Australia|悉尼|墨尔本|🇦🇺)).*$"
+  - name: 澳大利亚-智选
+    type: smart
+    include-all: true
+    policy-priority: ".*多宝.*:0.8"
+    uselightgbm: true
+    collectdata: true
+    health-check: 
+      enable: true
+      url: https://www.gstatic.com/generate_204
+      interval: 60
+      tolerance: 2
+    strategy: sticky-sessions
+    interval: 180
+    filter: "(?=.*(澳大利亚|澳|AU|Australia|悉尼|墨尔本|🇦🇺)).*$"
+
+  # 印度组
+
+  - name: 印度-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 印度-手选
+      - 印度-自动
+  - name: 印度-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(印度|IN|India|孟买|🇮🇳)).*$"
+  - name: 印度-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(印度|IN|India|孟买|🇮🇳)).*$"
+
+  # 泰国组
+
+  - name: 泰国-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 泰国-手选
+      - 泰国-自动
+  - name: 泰国-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(泰国|泰|TH|Thailand|曼谷|🇹🇭)).*$"
+  - name: 泰国-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(泰国|泰|TH|Thailand|曼谷|🇹🇭)).*$"
+
+  # 越南组
+
+  - name: 越南-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 越南-手选
+      - 越南-自动
+  - name: 越南-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(越南|VN|Vietnam|胡志明|河内|🇻🇳)).*$"
+  - name: 越南-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(越南|VN|Vietnam|胡志明|河内|🇻🇳)).*$"
+
+  # 菲律宾组
+
+  - name: 菲律宾-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 菲律宾-手选
+      - 菲律宾-自动
+  - name: 菲律宾-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(菲律宾|PH|Philippines|马尼拉|🇵🇭)).*$"
+  - name: 菲律宾-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(菲律宾|PH|Philippines|马尼拉|🇵🇭)).*$"
+
+  # 马来西亚组
+
+  - name: 马来西亚-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 马来西亚-手选
+      - 马来西亚-自动
+  - name: 马来西亚-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(马来西亚|马来|MY|Malaysia|吉隆坡|🇲🇾)).*$"
+  - name: 马来西亚-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(马来西亚|马来|MY|Malaysia|吉隆坡|🇲🇾)).*$"
+
+  # 巴西组
+
+  - name: 巴西-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 巴西-手选
+      - 巴西-自动
+  - name: 巴西-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(巴西|BR|Brazil|圣保罗|🇧🇷)).*$"
+  - name: 巴西-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(巴西|BR|Brazil|圣保罗|🇧🇷)).*$"
+
+  # 阿根廷组
+
+  - name: 阿根廷-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 阿根廷-手选
+      - 阿根廷-自动
+  - name: 阿根廷-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(阿根廷|AR|Argentina|布宜诺斯艾利斯|🇦🇷)).*$"
+  - name: 阿根廷-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(阿根廷|AR|Argentina|布宜诺斯艾利斯|🇦🇷)).*$"
+
+  # 土耳其组
+
+  - name: 土耳其-故转
+    type: fallback
+    interval: 300
+    lazy: false
+    proxies:
+      - 土耳其-手选
+      - 土耳其-自动
+  - name: 土耳其-手选
+    type: select
+    include-all: true
+    filter: "(?=.*(土耳其|TR|Turkey|伊斯坦布尔|🇹🇷)).*$"
+  - name: 土耳其-自动
+    type: url-test
+    include-all: true
+    tolerance: 50
+    interval: 300
+    filter: "(?=.*(土耳其|TR|Turkey|伊斯坦布尔|🇹🇷)).*$"
+
+
   # 其他组
   
   - name: 其他-故转
@@ -428,7 +840,7 @@ proxy-groups:
   - name: 其他-手选
     type: select
     include-all: true
-    filter: "^((?!(直连|拒绝|广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).)*$"
+    filter: "^((?!(直连|拒绝|广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广韩|韩国|韓國|KR|首尔|春川|🇰🇷|Korea|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States|加拿大|CA|Canada|温哥华|多伦多|蒙特利尔|🇨🇦|墨西哥|MX|Mexico|🇲🇽|英国|UK|United Kingdom|伦敦|英|London|🇬🇧|德国|德|DE|Germany|柏林|法兰克福|🇩🇪|法国|法|FR|France|巴黎|🇫🇷|荷兰|NL|Netherlands|阿姆斯特丹|🇳🇱|俄罗斯|俄|RU|Russia|莫斯科|🇷🇺|意大利|意|IT|Italy|米兰|罗马|🇮🇹|西班牙|ES|Spain|马德里|巴塞罗那|🇪🇸|澳大利亚|澳|AU|Australia|悉尼|墨尔本|🇦🇺|印度|IN|India|孟买|🇮🇳|泰国|泰|TH|Thailand|曼谷|🇹🇭|越南|VN|Vietnam|胡志明|河内|🇻🇳|菲律宾|PH|Philippines|马尼拉|🇵🇭|马来西亚|马来|MY|Malaysia|吉隆坡|🇲🇾|巴西|BR|Brazil|圣保罗|🇧🇷|阿根廷|AR|Argentina|布宜诺斯艾利斯|🇦🇷|土耳其|TR|Turkey|伊斯坦布尔|🇹🇷)).)*$"
 
   - name: 其他-智选
     type: smart
@@ -443,7 +855,7 @@ proxy-groups:
       tolerance: 2
     strategy: sticky-sessions
     interval: 180
-    filter: "^((?!(直连|拒绝|广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States)).)*$"
+    filter: "^((?!(直连|拒绝|广港|香港|HK|Hong Kong|🇭🇰|HongKong|广台|台湾|台灣|TW|Tai Wan|🇹🇼|🇨🇳|TaiWan|Taiwan|广日|日本|JP|川日|东京|大阪|泉日|埼玉|沪日|深日|🇯🇵|Japan|广新|新加坡|SG|坡|狮城|🇸🇬|Singapore|广韩|韩国|韓國|KR|首尔|春川|🇰🇷|Korea|广美|US|美国|纽约|波特兰|达拉斯|俄勒|凤凰城|费利蒙|洛杉|圣何塞|圣克拉|西雅|芝加|🇺🇸|United States|加拿大|CA|Canada|温哥华|多伦多|蒙特利尔|🇨🇦|墨西哥|MX|Mexico|🇲🇽|英国|UK|United Kingdom|伦敦|英|London|🇬🇧|德国|德|DE|Germany|柏林|法兰克福|🇩🇪|法国|法|FR|France|巴黎|🇫🇷|荷兰|NL|Netherlands|阿姆斯特丹|🇳🇱|俄罗斯|俄|RU|Russia|莫斯科|🇷🇺|意大利|意|IT|Italy|米兰|罗马|🇮🇹|西班牙|ES|Spain|马德里|巴塞罗那|🇪🇸|澳大利亚|澳|AU|Australia|悉尼|墨尔本|🇦🇺|印度|IN|India|孟买|🇮🇳|泰国|泰|TH|Thailand|曼谷|🇹🇭|越南|VN|Vietnam|胡志明|河内|🇻🇳|菲律宾|PH|Philippines|马尼拉|🇵🇭|马来西亚|马来|MY|Malaysia|吉隆坡|🇲🇾|巴西|BR|Brazil|圣保罗|🇧🇷|阿根廷|AR|Argentina|布宜诺斯艾利斯|🇦🇷|土耳其|TR|Turkey|伊斯坦布尔|🇹🇷)).)*$"
 
 # ========================
 # 规则引擎（rules）
@@ -517,10 +929,10 @@ rule-anchor:
   class: &class {type: http, interval: 86400, behavior: classical, format: text}
 
 rule-providers:
-  Freenom / Domain: {<<: *class, url: "https://ghfast.top/https://raw.githubusercontent.com/BigLucien520/openclash/refs/heads/rule/Freenom.list"}
-  Giffgaff / WiFiCalling: {<<: *class, url: "https://ghfast.top/https://raw.githubusercontent.com/BigLucien520/openclash/refs/heads/rule/giffgaff.list"}
-  Tubi / Domain: {<<: *class, url: "https://ghfast.top/https://raw.githubusercontent.com/BigLucien520/openclash/refs/heads/rule/tubi.list"}
-  Emotn / Domain: {<<: *class, url: "https://ghfast.top/https://raw.githubusercontent.com/BigLucien520/openclash/refs/heads/rule/emotn.list"}
+  Freenom / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/BigLucien520/openclash@heads/rule/Freenom.list"}
+  Giffgaff / WiFiCalling: {<<: *class, url: "https://cdn.jsdelivr.net/gh/BigLucien520/openclash@heads/rule/giffgaff.list"}
+  Tubi / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/BigLucien520/openclash@heads/rule/tubi.list"}
+  Emotn / Domain: {<<: *class, url: "https://cdn.jsdelivr.net/gh/BigLucien520/openclash@heads/rule/emotn.list"}
   TEST / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/liandu2024/clash/refs/heads/main/list/Check.list"}
   ChatGPT / Domain: {<<: *domain, url: "https://gh-proxy.com/github.com/metacubex/meta-rules-dat/raw/refs/heads/meta/geo/geosite/openai.mrs"}
   Claude / Domain: {<<: *class, url: "https://gh-proxy.com/raw.githubusercontent.com/blackmatrix7/ios_rule_script/refs/heads/master/rule/Clash/Claude/Claude.list"}
