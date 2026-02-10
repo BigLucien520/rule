@@ -1,9 +1,0 @@
-# [O2/giffgaff Wi-Fi Calling]
-# 核心 ePDG 地址 (强制走英国节点或直连，取决于你的网络环境)
-DOMAIN,epdg.epc.mnc010.mcc234.pub.3gppnetwork.org,
-DOMAIN,ss.epc.mnc010.mcc234.pub.3gppnetwork.org,
-
-# 运营商通用后缀 (可选，防止其他相关服务受干扰)
-DOMAIN-SUFFIX,pub.3gppnetwork.org,
-DOMAIN-SUFFIX,giffgaff.com,
-DOMAIN-SUFFIX,o2.co.uk,
