@@ -1,5 +1,0 @@
-# emotn.list - emotn域名规则，用于分流
-DOMAIN-SUFFIX,emotn.com
-DOMAIN-SUFFIX,emotn.tv
-DOMAIN-SUFFIX,emotn.ai
-DOMAIN-SUFFIX,emotnui.com
